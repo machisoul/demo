@@ -15,9 +15,33 @@ void myRunable()
     }
 }
 
+auto f = [](){
+	while(1)
+	{
+		cout << "hello lambda function !!!" << endl;
+		sleep(1);
+	}
+};
+
+class SayHello
+{
+public:
+	SayHello(){
+		std::cout<<"create the SayHello object!!"<<std::endl;
+	}
+    void operator()(int x) 
+    {
+		while(1){
+			std::cout<<"hello:" << x <<std::endl;
+			sleep(1);
+		}
+    }
+};
+
 int main(){
-    std::thread t1(myRunable);
-    t1.detach();
+	SayHello sayh;
+	std::thread t(sayh, 8);
+   // t1.detach();
     sleep(10);
     //t1.detach();
 }
